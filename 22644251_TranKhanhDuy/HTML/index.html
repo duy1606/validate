@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Đăng ký tài khoản</title>
+    <script>
+        function KiemTraTenDN() {
+            var re = /^[a-z]\w+$/;
+            if (!re.test(document.getElementById('txtDN').value.trim())) {
+                tendn.innerText = "* Bắt buộc, bắt đầu bằng ký tự";
+                return false;
+            } else {
+                tendn.innerText = "*";
+                return true;
+            }
+        }
+
+        function KiemTraPassWord() {
+            var re = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+            if (!re.test(document.getElementById('txtMK').value.trim())) {
+                mk.innerText = "* Phải có chữ, số, ít nhất 6 ký tự";
+                return false;
+            } else {
+                mk.innerText = "*";
+                return true;
+            }
+        }
+
+        function KiemTraXacNhanPassWord() {
+            if (document.getElementById('txtXNMK').value != document.getElementById('txtMK').value) {
+                xnmk.innerText = "* Phải giống ô mật khẩu";
+                return false;
+            } else {
+                xnmk.innerText = "*";
+                return true;
+            }
+        }
+
+        function KiemTraNgaySinh() {
+            var ns = new Date(document.getElementById('txtNS').value);
+            var today = new Date();
+            if (today.getFullYear() - ns.getFullYear() <= 10) {
+                ngaysinh.innerText = "Tuổi phải lớn hơn 10";
+                return false;
+            } else {
+                ngaysinh.innerText = "";
+                return true;
+            }
+        }
+
+        function SubmitForm() {
+            if (KiemTraTenDN() == false || KiemTraPassWord() == false || KiemTraXacNhanPassWord() == false || KiemTraNgaySinh() == false) {
+                alert('Bạn chưa nhập đầy đủ thông tin!');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h2 align="center">Đăng ký tài khoản</h2>
+    <form action="" name="forml" onsubmit="return SubmitForm();" method="post">
+        <div>
+            <label for="txtDN" class="tittle">Tên đăng nhập</label>
+            <input type="text" name="txtdn" onblur="return KiemTraTenDN();" id="txtDN" size="30" placeholder="txtDN">
+            <span id="tendn">*</span>
+        </div>
+        <div>
+            <label for="txtMK" class="tittle">Mật khẩu</label>
+            <input type="password" name="txtMK" onblur="return KiemTraPassWord();" id="txtMK" size="30" placeholder="txtMK">
+            <span id="mk">*</span>
+        </div>
+        <div>
+            <label for="txtXNMK" class="tittle">Mật khẩu</label>
+            <input type="password" name="txtXNMK" onblur="return KiemTraXacNhanPassWord();" id="txtXNMK" size="30" placeholder="txtXNMK">
+            <span id="xnmk">*</span>
+        </div>
+        <h5 align="center">THÔNG TIN CÁ NHÂN</h5>
+        <div>
+            <label for="txtName" class="tittle">Họ và tên</label>
+            <input type="text" id="txtName" onblur="" name="txtName" size="30" placeholder="txtName">
+            <span id="hoten">bắt buộc</span>
+        </div>
+        <div>
+            <label for="txtNS" class="tittle">Ngày sinh</label>
+            <input type="date" id="txtNS" onblur="" name="txtNS" size="30" placeholder="txtNS">
+            <span id="ngaysinh">bắt buộc</span>
+        </div>
+        <div class="radio-buttons">
+            <label for="" class="tittle">Giới tính</label>
+            <input type="radio" name="gender" id="male" value="M" checked>
+            <label for="male">Nam</label>
+            <input type="radio" name="gender" id="female" value="F">
+            <label for="female">Nữ</label>
+        </div>
+        <div>
+            <label for="txtDC" class="tittle">Địa chỉ</label>
+            <input type="text" name="txtDC" size="30" placeholder="txtDC">
+            <span id="diachi"></span>
+        </div>
+        <div>
+            <label for="txtDT" class="tittle">Điện thoại</label>
+            <input type="text" name="txtDT" size="30" placeholder="txtDT">
+            <span id="dienthoai">phải là số</span>
+        </div>
+        <div>
+            <label for="txtEmail" class="tittle">Email</label>
+            <input type="text" name="txtEmail" size="30" placeholder="txtEmail">
+            <span id="email"> nhập đúng địa chỉ email</span>
+        </div>
+        <div class="submit">
+            <input type="submit" name="" id="submit" value="Đăng ký">
+            <input type="reset" name="" id="submit">
+        </div>
+    </form>
+</body>
+
+</html>
